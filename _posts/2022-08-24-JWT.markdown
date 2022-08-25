@@ -2,7 +2,6 @@
 layout: post
 title:  "JWT vulnerabilities can compromise your website"
 date:   2022-08-24 15:43:21 +0200
-categories: Vulnerabilities
 author: Clara Hällgren
 ---
 
