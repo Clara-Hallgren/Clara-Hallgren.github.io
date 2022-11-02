@@ -6,13 +6,13 @@ author: Clara Hällgren
 ---
 
 SQL-injection, or SQLi, might be one of the most well-known vulnerabilities out there. The sneaky thing about these are that SQLi vulnerabilities can just as well be 
-caused by coders that frankly don't know what they are doing, meaning there will never come a patch for your own coding errors. In this article, I will go through the 
-basics of SQLi and demonstrate the vulnerability by walkthroughs of the related labs from Portswigger.
+caused by coders that frankly don't know what they are doing. In this article, I will go through the 
+basics of SQLi and demonstrate the vulnerability by walk-throughs of the related labs from Portswigger.
 
 ## SQL Injection 
 SQL injection is a web security vulnerability where an attacker finds a way to modify or interfere with database queries. 
 This can allow an attacker to read data from a database, and sometimes even modify or delete its content. To truly understand and master exploiting SQLi you need 
-to have a basic to intermediate understanding of how a database is build, managed and queried. And if you don't, this will probably be a quite boring article for you.
+to have a basic to intermediate understanding of how a database is built, managed and queried. And if you don't, this will probably be a quite boring article for you.
 
 ### LAB 1: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 We know from the description that this lab contains a SQL injection vulnerability 
@@ -20,8 +20,13 @@ in the product category filter. So, obviously, when we open the lab we firstly w
 
     https://<your-lab-id>.web-security-academy.net/filter?category=Gifts
 
+From the lab description we already know that this is vulnerable. We also know that the objective is to prove this. 
+Therefore, I add a simple query to the URL (category=Gifts'OR+1=1--) which solves the lab. So why did I do that?  
+
+    https://<your-lab-id>.web-security-academy.net/filter?category=Gifts'OR+1=1--
+
 The OR 1=1 is a powerful “tool” to learn. What I can figure out from the 
-“Category=Gifts” part of the query is that it is a Boolean query that retrieves 
+“Category=Gifts” part of the query is that it "probably" is a query that retrieves 
 all entries that have the attribute Category set to Gifts. It probably looks 
 something like this: 
 
