@@ -5,9 +5,15 @@ date:   2022-11-02 09:00:21 +0200
 author: Clara Hällgren
 ---
 
-SQL injection is a web security vulnerability where an attacker finds a way to modify or interfere with database queries. This can allow an attacker to read data from a database, and sometimes even modify or delete its content.  In this article, I will continue with walkthroughs of Portswiggers labs to explain the concept of SQLi Union attacks. If you are new to SQL injection, I would recommend reading my previous article on the subject first.
+SQL injection is a web security vulnerability where an attacker finds a way to modify or 
+interfere with database queries. This can allow an attacker to read data from a database, 
+and sometimes even modify or delete its content.  In this article, I will continue with 
+walkthroughs of Portswiggers labs to explain the concept of SQLi Union attacks. If you are 
+new to SQL injection, I would recommend reading my previous article on the subject first.
+
 ## SQLi Union Attack
-Databases are usually made of a number of tables with different data. For an online store we might have a table named products, one named users and another named discounts. Tables allow for UNION commands where we can fetch data from several tables at once. In cases where the results of and SQL query are returned in the response, we can in try to leverage that to get data from other, and maybe far more interesting, tables. We do this with a ‘UNION’ command.
+Databases are usually made of a number of tables with different data. 
+For an online store we might have a table named products, one named users and another named discounts. Tables allow for UNION commands where we can fetch data from several tables at once. In cases where the results of and SQL query are returned in the response, we can in try to leverage that to get data from other, and maybe far more interesting, tables. We do this with a ‘UNION’ command.
 
 ## The Union Command
 The union command allows for additional SELECT queries that can retrieve data from several tables at once. This is a great function for database managers that wants to fetch data from multiple tables in one request. It can also be used by attackers that has found a SQLi vulnerability. Lets say we have the following request to the database:
@@ -30,7 +36,7 @@ In this lab the objective is to figure out which requested column that can displ
 1. I start by determining the number of columns just like in the last lab with ORDER BY X and I get 3 as the magic number again. 
 2. Now I need to figure out which of the three NULL values that is compatible with String/varchar. I add my random value to the first null which generates an error so I move on to the next one where I find my luck. 
 3. Lab solved. 
-###
+
     ‘UNION SELECT null,’rzzH7w’,null—
 
 ## SQL injection UNION attack, retrieving data from other tables
@@ -58,6 +64,6 @@ Now, because only the second column can hold a string we write the following
 
     ‘UNION SELECT NULL, username ||´-´|| password FROM users
 
-Where the || ‘-‘ || works as a separator. 
+Where the "|| ‘-‘ ||" works as a separator. 
 
 ![Image](/assets/SQL-Union/img2.png)
