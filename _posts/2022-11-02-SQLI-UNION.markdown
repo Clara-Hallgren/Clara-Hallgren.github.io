@@ -34,10 +34,8 @@ Which solves the lab!
 ## SQL injection UNION attack, finding a column containing text
 In this lab the objective is to figure out which requested column that can display text. This is a great practice of the second criteria for SQL union attacks but note that it is not a great example of how to exploit this in the wild. Here we need to extract a random value and make it appear with the query result, lets get to it! My random value is rzzH7w. 
 1. I start by determining the number of columns just like in the last lab with ORDER BY X and I get 3 as the magic number again. 
-2. Now I need to figure out which of the three NULL values that is compatible with String/varchar. I add my random value to the first null which generates an error so I move on to the next one where I find my luck. 
-3. Lab solved. 
-
-    ‘UNION SELECT null,’rzzH7w’,null—
+2. Now I need to figure out which of the three NULL values that is compatible with String/varchar. I add my random value to the first null which generates an error so I move on to the next one where I find my luck (‘UNION SELECT null,’rzzH7w’,null—)
+3. Lab solved.
 
 ## SQL injection UNION attack, retrieving data from other tables
 
@@ -63,7 +61,5 @@ except from how we write the query. In the previous lab we wrote the query like 
 Now, because only the second column can hold a string we write the following 
 
     ‘UNION SELECT NULL, username ||´-´|| password FROM users
-
-Where the "|| ‘-‘ ||" works as a separator. 
 
 ![Image](/assets/SQL-Union/img2.png)
