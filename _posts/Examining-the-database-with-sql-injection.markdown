@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Walkthroughs: Examining the database in SQL injection attacks"
+title:  "Examining the database in SQL injection attacks - Portswigger Walkthrougs"
 date:   2022-11-11 09:00:21 +0200
 author: Clara Hällgren
 ---
